@@ -1,0 +1,7 @@
+<resources>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="inter_viejas_padding">4dp</dimen>
+    <dimen name="inter_viejas_margin">3dp</dimen>
+    <dimen name="margin_away">-3dp</dimen>
+    <dimen name="celda_height">36dp</dimen>
+</resources>
