@@ -45,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
         try {
             if(master.realizarJugada(celda,casilla)){
                 //Fin de Juego: Mostrar Ganador al signoActual
+                Snackbar.make(view, "FELICIDADES GANO - "+signoActual.toUpperCase(), Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
             }
 
             MarcadorPantalla.checkCasilla((ImageButton) view, signoActual);

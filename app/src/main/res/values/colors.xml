@@ -8,5 +8,7 @@
     <color name="celda_back">#cccccc</color>
     <color name="celda_desactivada">#ff9980</color>
     <color name="celda_activada">#6fdc6f</color>
+    <color name="celda_ganadora">#ffff66</color>
     <color name="fondo_boton">#f2f2f2</color>
+
 </resources>

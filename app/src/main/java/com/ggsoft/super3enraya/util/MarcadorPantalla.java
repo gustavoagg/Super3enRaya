@@ -35,8 +35,10 @@ public class MarcadorPantalla {
 
             if(celdasPermitidas[i]==0){
                 desactivarCelda(i+1,main);
-            }else{
+            }else if(celdasPermitidas[i]==1){
                 activarCelda(i+1,main);
+            }else if(celdasPermitidas[i]==2){
+                celdaGanadora(i+1,main);
             }
         }
 
@@ -52,4 +54,8 @@ public class MarcadorPantalla {
         layout.setBackgroundColor(main.getResources().getColor(R.color.celda_desactivada));
     }
 
+    private static void celdaGanadora(int i, AppCompatActivity main) {
+        LinearLayout layout = (LinearLayout) main.findViewById(main.getResources().getIdentifier("celda_"+i, "id", main.getPackageName()));
+        layout.setBackgroundColor(main.getResources().getColor(R.color.celda_ganadora));
+    }
 }
