@@ -51,8 +51,8 @@ public class TresEnRaya {
     }
 
     private boolean sonIguales(int i, int j, int k) {
-        if(this.casillas[i-1].equals(this.casillas[j-1])){
-            if(this.casillas[j-1].equals(this.casillas[k-1])){
+        if(this.casillas[i-1]!=null && this.casillas[j-1]!=null && this.casillas[i-1].equals(this.casillas[j-1])){
+            if(this.casillas[k-1]!=null && this.casillas[j-1].equals(this.casillas[k-1])){
                 return true;
             }
         }

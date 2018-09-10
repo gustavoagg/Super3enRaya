@@ -22,13 +22,14 @@
             android:background="#222222">
 
             <LinearLayout
+                android:id="@+id/celda_1"
                 android:layout_width="180dp"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="@dimen/inter_viejas_margin"
                 android:layout_marginLeft="@dimen/margin_away"
                 android:layout_marginRight="@dimen/inter_viejas_margin"
                 android:layout_marginTop="@dimen/margin_away"
-                android:background="#cccccc"
+                android:background="@color/celda_back"
                 android:orientation="vertical"
                 android:padding="@dimen/inter_viejas_padding"
                 android:visibility="visible">
@@ -40,8 +41,9 @@
                     android:orientation="horizontal">
 
                     <ImageButton
+                        android:backgroundTint="@color/fondo_boton"
                         android:onClick="jugarAqui"
-                        android:id="@+id/imageButton1-1"
+                        android:id="@+id/imageButton-1-1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="0dp"
@@ -50,47 +52,18 @@
                         app:srcCompat="@drawable/no_sign" />
 
                     <ImageButton
+                        android:backgroundTint="@color/fondo_boton"
                         android:onClick="jugarAqui"
-                        android:id="@+id/imageButton1-2"
+                        android:id="@+id/imageButton-1-2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         app:srcCompat="@drawable/no_sign" />
 
                     <ImageButton
+                        android:backgroundTint="@color/fondo_boton"
                         android:onClick="jugarAqui"
-                        android:id="@+id/imageButton1-3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        app:srcCompat="@drawable/no_sign" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/celda_height"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-
-                    <ImageButton
-                        android:onClick="jugarAqui"
-                        android:id="@+id/imageButton1-4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        app:srcCompat="@drawable/no_sign" />
-
-                    <ImageButton
-                        android:onClick="jugarAqui"
-                        android:id="@+id/imageButton1-5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        app:srcCompat="@drawable/no_sign" />
-
-                    <ImageButton
-                        android:onClick="jugarAqui"
-                        android:id="@+id/imageButton1-6"
+                        android:id="@+id/imageButton-1-3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -104,24 +77,61 @@
                     android:orientation="horizontal">
 
                     <ImageButton
+                        android:backgroundTint="@color/fondo_boton"
                         android:onClick="jugarAqui"
-                        android:id="@+id/imageButton1-7"
+                        android:id="@+id/imageButton-1-4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         app:srcCompat="@drawable/no_sign" />
 
                     <ImageButton
+                        android:backgroundTint="@color/fondo_boton"
                         android:onClick="jugarAqui"
-                        android:id="@+id/imageButton1-8"
+                        android:id="@+id/imageButton-1-5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/no_sign" />
+
+                    <ImageButton
+                        android:backgroundTint="@color/fondo_boton"
+                        android:onClick="jugarAqui"
+                        android:id="@+id/imageButton-1-6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/no_sign" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/celda_height"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <ImageButton
+                        android:backgroundTint="@color/fondo_boton"
+                        android:onClick="jugarAqui"
+                        android:id="@+id/imageButton-1-7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/no_sign" />
+
+                    <ImageButton
+                        android:backgroundTint="@color/fondo_boton"
+                        android:onClick="jugarAqui"
+                        android:id="@+id/imageButton-1-8"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         app:srcCompat="@drawable/no_sign" />
 
                     <ImageButton
+                        android:backgroundTint="@color/fondo_boton"
                         android:onClick="jugarAqui"
-                        android:id="@+id/imageButton1-9"
+                        android:id="@+id/imageButton-1-9"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -131,6 +141,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/celda_2"
                 android:layout_width="180dp"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="@dimen/inter_viejas_margin"
@@ -140,7 +151,7 @@
                 android:orientation="vertical"
                 android:padding="@dimen/inter_viejas_padding"
                 android:visibility="visible"
-                android:background="#cccccc">
+                android:background="@color/celda_back">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -149,24 +160,27 @@
                     android:orientation="horizontal">
 
                     <ImageButton
+                        android:backgroundTint="@color/fondo_boton"
                         android:onClick="jugarAqui"
-                        android:id="@+id/imageButton2-1"
+                        android:id="@+id/imageButton-2-1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         app:srcCompat="@drawable/no_sign" />
 
                     <ImageButton
+                        android:backgroundTint="@color/fondo_boton"
                         android:onClick="jugarAqui"
-                        android:id="@+id/imageButton2-2"
+                        android:id="@+id/imageButton-2-2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         app:srcCompat="@drawable/no_sign" />
 
                     <ImageButton
+                        android:backgroundTint="@color/fondo_boton"
                         android:onClick="jugarAqui"
-                        android:id="@+id/imageButton2-3"
+                        android:id="@+id/imageButton-2-3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -180,24 +194,27 @@
                     android:orientation="horizontal">
 
                     <ImageButton
+                        android:backgroundTint="@color/fondo_boton"
                         android:onClick="jugarAqui"
-                        android:id="@+id/imageButton2-4"
+                        android:id="@+id/imageButton-2-4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         app:srcCompat="@drawable/no_sign" />
 
                     <ImageButton
+                        android:backgroundTint="@color/fondo_boton"
                         android:onClick="jugarAqui"
-                        android:id="@+id/imageButton2-5"
+                        android:id="@+id/imageButton-2-5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         app:srcCompat="@drawable/no_sign" />
 
                     <ImageButton
+                        android:backgroundTint="@color/fondo_boton"
                         android:onClick="jugarAqui"
-                        android:id="@+id/imageButton2-6"
+                        android:id="@+id/imageButton-2-6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -211,24 +228,27 @@
                     android:orientation="horizontal">
 
                     <ImageButton
+                        android:backgroundTint="@color/fondo_boton"
                         android:onClick="jugarAqui"
-                        android:id="@+id/imageButton2-7"
+                        android:id="@+id/imageButton-2-7"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         app:srcCompat="@drawable/no_sign" />
 
                     <ImageButton
+                        android:backgroundTint="@color/fondo_boton"
                         android:onClick="jugarAqui"
-                        android:id="@+id/imageButton2-8"
+                        android:id="@+id/imageButton-2-8"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         app:srcCompat="@drawable/no_sign" />
 
                     <ImageButton
+                        android:backgroundTint="@color/fondo_boton"
                         android:onClick="jugarAqui"
-                        android:id="@+id/imageButton2-9"
+                        android:id="@+id/imageButton-2-9"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -238,6 +258,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/celda_3"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="@dimen/inter_viejas_margin"
@@ -246,7 +267,7 @@
                 android:layout_marginTop="@dimen/margin_away"
                 android:orientation="vertical"
                 android:padding="@dimen/inter_viejas_padding"
-                android:background="#cccccc">
+                android:background="@color/celda_back">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -255,24 +276,27 @@
                     android:orientation="horizontal">
 
                     <ImageButton
+                        android:backgroundTint="@color/fondo_boton"
                         android:onClick="jugarAqui"
-                        android:id="@+id/imageButton3-1"
+                        android:id="@+id/imageButton-3-1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         app:srcCompat="@drawable/no_sign" />
 
                     <ImageButton
+                        android:backgroundTint="@color/fondo_boton"
                         android:onClick="jugarAqui"
-                        android:id="@+id/imageButton3-2"
+                        android:id="@+id/imageButton-3-2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         app:srcCompat="@drawable/no_sign" />
 
                     <ImageButton
+                        android:backgroundTint="@color/fondo_boton"
                         android:onClick="jugarAqui"
-                        android:id="@+id/imageButton3-3"
+                        android:id="@+id/imageButton-3-3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -286,24 +310,27 @@
                     android:orientation="horizontal">
 
                     <ImageButton
+                        android:backgroundTint="@color/fondo_boton"
                         android:onClick="jugarAqui"
-                        android:id="@+id/imageButton3-4"
+                        android:id="@+id/imageButton-3-4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         app:srcCompat="@drawable/no_sign" />
 
                     <ImageButton
+                        android:backgroundTint="@color/fondo_boton"
                         android:onClick="jugarAqui"
-                        android:id="@+id/imageButton3-5"
+                        android:id="@+id/imageButton-3-5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         app:srcCompat="@drawable/no_sign" />
 
                     <ImageButton
+                        android:backgroundTint="@color/fondo_boton"
                         android:onClick="jugarAqui"
-                        android:id="@+id/imageButton3-6"
+                        android:id="@+id/imageButton-3-6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -317,24 +344,27 @@
                     android:orientation="horizontal">
 
                     <ImageButton
+                        android:backgroundTint="@color/fondo_boton"
                         android:onClick="jugarAqui"
-                        android:id="@+id/imageButton3-7"
+                        android:id="@+id/imageButton-3-7"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         app:srcCompat="@drawable/no_sign" />
 
                     <ImageButton
+                        android:backgroundTint="@color/fondo_boton"
                         android:onClick="jugarAqui"
-                        android:id="@+id/imageButton3-8"
+                        android:id="@+id/imageButton-3-8"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         app:srcCompat="@drawable/no_sign" />
 
                     <ImageButton
+                        android:backgroundTint="@color/fondo_boton"
                         android:onClick="jugarAqui"
-                        android:id="@+id/imageButton3-9"
+                        android:id="@+id/imageButton-3-9"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -352,6 +382,7 @@
             android:visibility="visible">
 
             <LinearLayout
+                android:id="@+id/celda_4"
                 android:layout_width="180dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/inter_viejas_margin"
@@ -360,7 +391,7 @@
                 android:layout_marginTop="@dimen/inter_viejas_margin"
                 android:orientation="vertical"
                 android:padding="@dimen/inter_viejas_padding"
-                android:background="#cccccc">
+                android:background="@color/celda_back">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -369,55 +400,27 @@
                     android:orientation="horizontal">
 
                     <ImageButton
+                        android:backgroundTint="@color/fondo_boton"
                         android:onClick="jugarAqui"
-                        android:id="@+id/imageButton4-1"
+                        android:id="@+id/imageButton-4-1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         app:srcCompat="@drawable/no_sign" />
 
                     <ImageButton
+                        android:backgroundTint="@color/fondo_boton"
                         android:onClick="jugarAqui"
-                        android:id="@+id/imageButton4-2"
+                        android:id="@+id/imageButton-4-2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         app:srcCompat="@drawable/no_sign" />
 
                     <ImageButton
+                        android:backgroundTint="@color/fondo_boton"
                         android:onClick="jugarAqui"
-                        android:id="@+id/imageButton4-3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        app:srcCompat="@drawable/no_sign" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/celda_height"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-
-                    <ImageButton
-                        android:onClick="jugarAqui"
-                        android:id="@+id/imageButton4-4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        app:srcCompat="@drawable/no_sign" />
-
-                    <ImageButton
-                        android:onClick="jugarAqui"
-                        android:id="@+id/imageButton4-5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        app:srcCompat="@drawable/no_sign" />
-
-                    <ImageButton
-                        android:onClick="jugarAqui"
-                        android:id="@+id/imageButton4-6"
+                        android:id="@+id/imageButton-4-3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -431,24 +434,61 @@
                     android:orientation="horizontal">
 
                     <ImageButton
+                        android:backgroundTint="@color/fondo_boton"
                         android:onClick="jugarAqui"
-                        android:id="@+id/imageButton4-7"
+                        android:id="@+id/imageButton-4-4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         app:srcCompat="@drawable/no_sign" />
 
                     <ImageButton
+                        android:backgroundTint="@color/fondo_boton"
                         android:onClick="jugarAqui"
-                        android:id="@+id/imageButton4-8"
+                        android:id="@+id/imageButton-4-5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         app:srcCompat="@drawable/no_sign" />
 
                     <ImageButton
+                        android:backgroundTint="@color/fondo_boton"
                         android:onClick="jugarAqui"
-                        android:id="@+id/imageButton4-9"
+                        android:id="@+id/imageButton-4-6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/no_sign" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/celda_height"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <ImageButton
+                        android:backgroundTint="@color/fondo_boton"
+                        android:onClick="jugarAqui"
+                        android:id="@+id/imageButton-4-7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/no_sign" />
+
+                    <ImageButton
+                        android:backgroundTint="@color/fondo_boton"
+                        android:onClick="jugarAqui"
+                        android:id="@+id/imageButton-4-8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/no_sign" />
+
+                    <ImageButton
+                        android:backgroundTint="@color/fondo_boton"
+                        android:onClick="jugarAqui"
+                        android:id="@+id/imageButton-4-9"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -457,12 +497,13 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/celda_5"
                 android:layout_width="180dp"
                 android:layout_height="match_parent"
                 android:layout_margin="@dimen/inter_viejas_margin"
                 android:orientation="vertical"
                 android:padding="@dimen/inter_viejas_padding"
-                android:background="#cccccc">
+                android:background="@color/celda_back">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -471,7 +512,8 @@
                     android:orientation="horizontal">
 
                     <ImageButton
-                        android:id="@+id/imageButton5-1"
+                        android:backgroundTint="@color/fondo_boton"
+                        android:id="@+id/imageButton-5-1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -479,16 +521,18 @@
                         app:srcCompat="@drawable/no_sign" />
 
                     <ImageButton
+                        android:backgroundTint="@color/fondo_boton"
                         android:onClick="jugarAqui"
-                        android:id="@+id/imageButton5-2"
+                        android:id="@+id/imageButton-5-2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         app:srcCompat="@drawable/no_sign" />
 
                     <ImageButton
+                        android:backgroundTint="@color/fondo_boton"
                         android:onClick="jugarAqui"
-                        android:id="@+id/imageButton5-3"
+                        android:id="@+id/imageButton-5-3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -502,24 +546,27 @@
                     android:orientation="horizontal">
 
                     <ImageButton
+                        android:backgroundTint="@color/fondo_boton"
                         android:onClick="jugarAqui"
-                        android:id="@+id/imageButton5-4"
+                        android:id="@+id/imageButton-5-4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         app:srcCompat="@drawable/no_sign" />
 
                     <ImageButton
+                        android:backgroundTint="@color/fondo_boton"
                         android:onClick="jugarAqui"
-                        android:id="@+id/imageButton5-5"
+                        android:id="@+id/imageButton-5-5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         app:srcCompat="@drawable/no_sign" />
 
                     <ImageButton
+                        android:backgroundTint="@color/fondo_boton"
                         android:onClick="jugarAqui"
-                        android:id="@+id/imageButton5-6"
+                        android:id="@+id/imageButton-5-6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -533,24 +580,27 @@
                     android:orientation="horizontal">
 
                     <ImageButton
+                        android:backgroundTint="@color/fondo_boton"
                         android:onClick="jugarAqui"
-                        android:id="@+id/imageButton5-7"
+                        android:id="@+id/imageButton-5-7"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         app:srcCompat="@drawable/no_sign" />
 
                     <ImageButton
+                        android:backgroundTint="@color/fondo_boton"
                         android:onClick="jugarAqui"
-                        android:id="@+id/imageButton5-8"
+                        android:id="@+id/imageButton-5-8"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         app:srcCompat="@drawable/no_sign" />
 
                     <ImageButton
+                        android:backgroundTint="@color/fondo_boton"
                         android:onClick="jugarAqui"
-                        android:id="@+id/imageButton5-9"
+                        android:id="@+id/imageButton-5-9"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -559,6 +609,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/celda_6"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="@dimen/inter_viejas_margin"
@@ -567,7 +618,7 @@
                 android:layout_marginTop="@dimen/inter_viejas_margin"
                 android:orientation="vertical"
                 android:padding="@dimen/inter_viejas_padding"
-                android:background="#cccccc">
+                android:background="@color/celda_back">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -576,24 +627,27 @@
                     android:orientation="horizontal">
 
                     <ImageButton
+                        android:backgroundTint="@color/fondo_boton"
                         android:onClick="jugarAqui"
-                        android:id="@+id/imageButton6-1"
+                        android:id="@+id/imageButton-6-1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         app:srcCompat="@drawable/no_sign" />
 
                     <ImageButton
+                        android:backgroundTint="@color/fondo_boton"
                         android:onClick="jugarAqui"
-                        android:id="@+id/imageButton6-2"
+                        android:id="@+id/imageButton-6-2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         app:srcCompat="@drawable/no_sign" />
 
                     <ImageButton
+                        android:backgroundTint="@color/fondo_boton"
                         android:onClick="jugarAqui"
-                        android:id="@+id/imageButton6-3"
+                        android:id="@+id/imageButton-6-3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -607,24 +661,27 @@
                     android:orientation="horizontal">
 
                     <ImageButton
+                        android:backgroundTint="@color/fondo_boton"
                         android:onClick="jugarAqui"
-                        android:id="@+id/imageButton6-4"
+                        android:id="@+id/imageButton-6-4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         app:srcCompat="@drawable/no_sign" />
 
                     <ImageButton
+                        android:backgroundTint="@color/fondo_boton"
                         android:onClick="jugarAqui"
-                        android:id="@+id/imageButton6-5"
+                        android:id="@+id/imageButton-6-5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         app:srcCompat="@drawable/no_sign" />
 
                     <ImageButton
+                        android:backgroundTint="@color/fondo_boton"
                         android:onClick="jugarAqui"
-                        android:id="@+id/imageButton6-6"
+                        android:id="@+id/imageButton-6-6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -638,24 +695,27 @@
                     android:orientation="horizontal">
 
                     <ImageButton
+                        android:backgroundTint="@color/fondo_boton"
                         android:onClick="jugarAqui"
-                        android:id="@+id/imageButton6-7"
+                        android:id="@+id/imageButton-6-7"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         app:srcCompat="@drawable/no_sign" />
 
                     <ImageButton
+                        android:backgroundTint="@color/fondo_boton"
                         android:onClick="jugarAqui"
-                        android:id="@+id/imageButton6-8"
+                        android:id="@+id/imageButton-6-8"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         app:srcCompat="@drawable/no_sign" />
 
                     <ImageButton
+                        android:backgroundTint="@color/fondo_boton"
                         android:onClick="jugarAqui"
-                        android:id="@+id/imageButton6-9"
+                        android:id="@+id/imageButton-6-9"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -672,13 +732,14 @@
             android:visibility="visible">
 
             <LinearLayout
+                android:id="@+id/celda_7"
                 android:layout_width="180dp"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="@dimen/margin_away"
                 android:layout_marginLeft="@dimen/margin_away"
                 android:layout_marginRight="@dimen/inter_viejas_margin"
                 android:layout_marginTop="@dimen/inter_viejas_margin"
-                android:background="#cccccc"
+                android:background="@color/celda_back"
                 android:orientation="vertical"
                 android:padding="@dimen/inter_viejas_padding">
 
@@ -689,55 +750,27 @@
                     android:orientation="horizontal">
 
                     <ImageButton
+                        android:backgroundTint="@color/fondo_boton"
                         android:onClick="jugarAqui"
-                        android:id="@+id/imageButton7-1"
+                        android:id="@+id/imageButton-7-1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         app:srcCompat="@drawable/no_sign" />
 
                     <ImageButton
+                        android:backgroundTint="@color/fondo_boton"
                         android:onClick="jugarAqui"
-                        android:id="@+id/imageButton7-2"
+                        android:id="@+id/imageButton-7-2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         app:srcCompat="@drawable/no_sign" />
 
                     <ImageButton
+                        android:backgroundTint="@color/fondo_boton"
                         android:onClick="jugarAqui"
-                        android:id="@+id/imageButton7-3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        app:srcCompat="@drawable/no_sign" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/celda_height"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-
-                    <ImageButton
-                        android:onClick="jugarAqui"
-                        android:id="@+id/imageButton7-4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        app:srcCompat="@drawable/no_sign" />
-
-                    <ImageButton
-                        android:onClick="jugarAqui"
-                        android:id="@+id/imageButton7-5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        app:srcCompat="@drawable/no_sign" />
-
-                    <ImageButton
-                        android:onClick="jugarAqui"
-                        android:id="@+id/imageButton7-6"
+                        android:id="@+id/imageButton-7-3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -751,24 +784,61 @@
                     android:orientation="horizontal">
 
                     <ImageButton
+                        android:backgroundTint="@color/fondo_boton"
                         android:onClick="jugarAqui"
-                        android:id="@+id/imageButton7-7"
+                        android:id="@+id/imageButton-7-4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         app:srcCompat="@drawable/no_sign" />
 
                     <ImageButton
+                        android:backgroundTint="@color/fondo_boton"
                         android:onClick="jugarAqui"
-                        android:id="@+id/imageButton7-8"
+                        android:id="@+id/imageButton-7-5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         app:srcCompat="@drawable/no_sign" />
 
                     <ImageButton
+                        android:backgroundTint="@color/fondo_boton"
                         android:onClick="jugarAqui"
-                        android:id="@+id/imageButton7-9"
+                        android:id="@+id/imageButton-7-6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/no_sign" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/celda_height"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <ImageButton
+                        android:backgroundTint="@color/fondo_boton"
+                        android:onClick="jugarAqui"
+                        android:id="@+id/imageButton-7-7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/no_sign" />
+
+                    <ImageButton
+                        android:backgroundTint="@color/fondo_boton"
+                        android:onClick="jugarAqui"
+                        android:id="@+id/imageButton-7-8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/no_sign" />
+
+                    <ImageButton
+                        android:backgroundTint="@color/fondo_boton"
+                        android:onClick="jugarAqui"
+                        android:id="@+id/imageButton-7-9"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -778,13 +848,14 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/celda_8"
                 android:layout_width="180dp"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="@dimen/margin_away"
                 android:layout_marginLeft="@dimen/inter_viejas_margin"
                 android:layout_marginRight="@dimen/inter_viejas_margin"
                 android:layout_marginTop="@dimen/inter_viejas_margin"
-                android:background="#cccccc"
+                android:background="@color/celda_back"
                 android:orientation="vertical"
                 android:padding="@dimen/inter_viejas_padding">
 
@@ -795,15 +866,17 @@
                     android:orientation="horizontal">
 
                     <ImageButton
+                        android:backgroundTint="@color/fondo_boton"
                         android:onClick="jugarAqui"
-                        android:id="@+id/imageButton8-1"
+                        android:id="@+id/imageButton-8-1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         app:srcCompat="@drawable/no_sign" />
 
                     <ImageButton
-                        android:id="@+id/imageButton8-2"
+                        android:backgroundTint="@color/fondo_boton"
+                        android:id="@+id/imageButton-8-2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -811,8 +884,9 @@
                         app:srcCompat="@drawable/no_sign" />
 
                     <ImageButton
+                        android:backgroundTint="@color/fondo_boton"
                         android:onClick="jugarAqui"
-                        android:id="@+id/imageButton8-3"
+                        android:id="@+id/imageButton-8-3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -826,24 +900,27 @@
                     android:orientation="horizontal">
 
                     <ImageButton
+                        android:backgroundTint="@color/fondo_boton"
                         android:onClick="jugarAqui"
-                        android:id="@+id/imageButton8-4"
+                        android:id="@+id/imageButton-8-4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         app:srcCompat="@drawable/no_sign" />
 
                     <ImageButton
+                        android:backgroundTint="@color/fondo_boton"
                         android:onClick="jugarAqui"
-                        android:id="@+id/imageButton8-5"
+                        android:id="@+id/imageButton-8-5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         app:srcCompat="@drawable/no_sign" />
 
                     <ImageButton
+                        android:backgroundTint="@color/fondo_boton"
                         android:onClick="jugarAqui"
-                        android:id="@+id/imageButton8-6"
+                        android:id="@+id/imageButton-8-6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -857,24 +934,27 @@
                     android:orientation="horizontal">
 
                     <ImageButton
+                        android:backgroundTint="@color/fondo_boton"
                         android:onClick="jugarAqui"
-                        android:id="@+id/imageButton8-7"
+                        android:id="@+id/imageButton-8-7"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         app:srcCompat="@drawable/no_sign" />
 
                     <ImageButton
+                        android:backgroundTint="@color/fondo_boton"
                         android:onClick="jugarAqui"
-                        android:id="@+id/imageButton8-8"
+                        android:id="@+id/imageButton-8-8"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         app:srcCompat="@drawable/no_sign" />
 
                     <ImageButton
+                        android:backgroundTint="@color/fondo_boton"
                         android:onClick="jugarAqui"
-                        android:id="@+id/imageButton8-9"
+                        android:id="@+id/imageButton-8-9"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -883,13 +963,14 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/celda_9"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="@dimen/margin_away"
                 android:layout_marginLeft="@dimen/inter_viejas_margin"
                 android:layout_marginRight="@dimen/margin_away"
                 android:layout_marginTop="@dimen/inter_viejas_margin"
-                android:background="#cccccc"
+                android:background="@color/celda_back"
                 android:orientation="vertical"
                 android:padding="@dimen/inter_viejas_padding">
 
@@ -900,55 +981,27 @@
                     android:orientation="horizontal">
 
                     <ImageButton
+                        android:backgroundTint="@color/fondo_boton"
                         android:onClick="jugarAqui"
-                        android:id="@+id/imageButton9-1"
+                        android:id="@+id/imageButton-9-1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         app:srcCompat="@drawable/no_sign" />
 
                     <ImageButton
+                        android:backgroundTint="@color/fondo_boton"
                         android:onClick="jugarAqui"
-                        android:id="@+id/imageButton9-2"
+                        android:id="@+id/imageButton-9-2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         app:srcCompat="@drawable/no_sign" />
 
                     <ImageButton
+                        android:backgroundTint="@color/fondo_boton"
                         android:onClick="jugarAqui"
-                        android:id="@+id/imageButton9-3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        app:srcCompat="@drawable/no_sign" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="20dp"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-
-                    <ImageButton
-                        android:onClick="jugarAqui"
-                        android:id="@+id/imageButton9-4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        app:srcCompat="@drawable/no_sign" />
-
-                    <ImageButton
-                        android:onClick="jugarAqui"
-                        android:id="@+id/imageButton9-5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        app:srcCompat="@drawable/no_sign" />
-
-                    <ImageButton
-                        android:onClick="jugarAqui"
-                        android:id="@+id/imageButton9-6"
+                        android:id="@+id/imageButton-9-3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -962,24 +1015,61 @@
                     android:orientation="horizontal">
 
                     <ImageButton
+                        android:backgroundTint="@color/fondo_boton"
                         android:onClick="jugarAqui"
-                        android:id="@+id/imageButton9-7"
+                        android:id="@+id/imageButton-9-4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/no_sign" />
+
+                    <ImageButton
+                        android:backgroundTint="@color/fondo_boton"
+                        android:onClick="jugarAqui"
+                        android:id="@+id/imageButton-9-5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/no_sign" />
+
+                    <ImageButton
+                        android:backgroundTint="@color/fondo_boton"
+                        android:onClick="jugarAqui"
+                        android:id="@+id/imageButton-9-6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/no_sign" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <ImageButton
+                        android:backgroundTint="@color/fondo_boton"
+                        android:onClick="jugarAqui"
+                        android:id="@+id/imageButton-9-7"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
                         app:srcCompat="@drawable/no_sign" />
 
                     <ImageButton
+                        android:backgroundTint="@color/fondo_boton"
                         android:onClick="jugarAqui"
-                        android:id="@+id/imageButton9-8"
+                        android:id="@+id/imageButton-9-8"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
                         app:srcCompat="@drawable/no_sign" />
 
                     <ImageButton
+                        android:backgroundTint="@color/fondo_boton"
                         android:onClick="jugarAqui"
-                        android:id="@+id/imageButton9-9"
+                        android:id="@+id/imageButton-9-9"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
