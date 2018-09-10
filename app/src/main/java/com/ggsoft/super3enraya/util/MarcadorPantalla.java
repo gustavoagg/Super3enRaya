@@ -27,6 +27,13 @@ public class MarcadorPantalla {
 
     }
 
+    public static void reiniciarCeldas(AppCompatActivity main){
+        for(int i=0;i<9;i++){
+            LinearLayout layout = (LinearLayout) main.findViewById(main.getResources().getIdentifier("celda_"+i, "id", main.getPackageName()));
+            layout.setBackgroundColor(main.getResources().getColor(R.color.celda_back));
+        }
+
+    }
     public static void dibujarCeldasPermitidas(int[] celdasPermitidas, AppCompatActivity main) {
 
         //iterar a traves de las celdas permitidas para cambiar el color de las mismas de

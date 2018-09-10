@@ -1087,18 +1087,29 @@
         android:orientation="vertical"
         android:visibility="visible"
         android:background="#111111">
-        <ToggleButton
-            android:id="@+id/toggleButton"
+
+
+        <Button
+        android:id="@+id/btnReiniciar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+            android:onClick="reiniciarJuego"
+        android:text="Reinicia" />
+        <Button
+            android:id="@+id/btnEntrena"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="ToggleButton" />
-        <ToggleButton
-            android:id="@+id/toggleButton2"
+            android:onClick="entrenarJuego"
+            android:text="Entrena" />
+        <Button
+            android:id="@+id/btnAprenda"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="ToggleButton" />
+            android:onClick="aprendaJuego"
+            android:text="¿Como Gano?" />
     </LinearLayout>
 
 
