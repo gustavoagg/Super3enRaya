@@ -59,6 +59,9 @@ public class TresEnRaya {
         return false;
     }
 
+    public String getPosicion(int i){
+        return this.casillas[i-1];
+    }
 
     public String toString(){
         return this.ganador +" - "+this.casillas.toString();

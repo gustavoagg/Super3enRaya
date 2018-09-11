@@ -98,4 +98,7 @@ public class MasterTresEnRaya {
     }
 
 
+    public TresEnRaya getCuadroMayor() {
+        return this.lista3EnRaya[0];
+    }
 }

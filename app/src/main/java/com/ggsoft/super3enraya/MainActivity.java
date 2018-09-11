@@ -7,16 +7,12 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageButton;
 
 import com.ggsoft.super3enraya.exception.JugadaIncorrectaException;
 import com.ggsoft.super3enraya.model.MasterTresEnRaya;
 import com.ggsoft.super3enraya.util.MarcadorPantalla;
-
-import java.util.Arrays;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     public MasterTresEnRaya master;
@@ -37,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+
     public void jugarAqui(View view)
     {
         String name = getResources().getResourceEntryName(view.getId());
@@ -53,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             MarcadorPantalla.checkCasilla((ImageButton) view, signoActual);
-            MarcadorPantalla.dibujarCeldasPermitidas(master.getCeldasPermitidas(),this);
+            MarcadorPantalla.dibujarCeldasPermitidas(master.getCeldasPermitidas(),master.getCuadroMayor(),this);
         } catch (JugadaIncorrectaException e) {
             //Jugada Indebida mostrar mensaje
             Snackbar.make(view, "EPA!! ahi no puedes jugar", Snackbar.LENGTH_LONG)
