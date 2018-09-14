@@ -1124,7 +1124,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:visibility="visible"
-        android:background="#111111"
+        android:background="#ffffff"
         android:layout_weight="0.1">
 
 
@@ -1149,6 +1149,22 @@
             android:layout_weight="1"
             android:onClick="aprendaJuego"
             android:text="¿Como Gano?" />
+
+        <TextView
+            android:id="@+id/editText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:inputType="textPersonName"
+            android:text="JUEGA"
+            android:textAlignment="center" />
+
+        <ImageView
+            android:id="@+id/quienJuega"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/sign_o" />
     </LinearLayout>
 
 

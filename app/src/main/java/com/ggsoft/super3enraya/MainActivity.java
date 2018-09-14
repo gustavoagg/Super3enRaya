@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             boludoCount=0;
+            MarcadorPantalla.cambiarJugador(signoActual,this);
             MarcadorPantalla.checkCasilla((ImageButton) view, signoActual);
             MarcadorPantalla.dibujarCeldasPermitidas(master.getCeldasPermitidas(),master.getCuadroMayor(),this);
         } catch (JugadaIncorrectaException e) {

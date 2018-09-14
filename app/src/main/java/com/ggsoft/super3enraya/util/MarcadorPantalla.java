@@ -3,6 +3,7 @@ package com.ggsoft.super3enraya.util;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.ggsoft.super3enraya.R;
@@ -75,6 +76,15 @@ public class MarcadorPantalla {
             layout.setBackground(main.getResources().getDrawable(R.drawable.big_white_o));
         }else if(posicion.equalsIgnoreCase(MasterTresEnRaya.X_SIGN)){
             layout.setBackground(main.getResources().getDrawable(R.drawable.big_white_x));
+        }
+    }
+
+    public static void cambiarJugador(String sign, AppCompatActivity main) {
+        ImageView jugador = (ImageView)main.findViewById(R.id.quienJuega);
+        if (sign.equalsIgnoreCase(MasterTresEnRaya.O_SIGN)){
+            jugador.setImageResource(R.drawable.sign_x);
+        }else{
+            jugador.setImageResource(R.drawable.sign_o);
         }
     }
 }
