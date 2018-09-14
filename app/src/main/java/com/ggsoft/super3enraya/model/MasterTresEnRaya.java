@@ -24,9 +24,11 @@ public class MasterTresEnRaya {
 
     // La celda indica el numero de TresEnRaya seleccionado (1-9) y la casilla es la posicion dentro de esa celda (1-9)
     public boolean realizarJugada(int celda, int casilla) throws JugadaIncorrectaException {
+        // se puede jugar en esa celda
             if(!isCeldaPermitida(celda)){
                 throw new JugadaIncorrectaException("CI - Celda Invalida");
             }
+            //realizar jugada para ver si genera ganador
             if(this.lista3EnRaya[celda].marcarCasilla(casilla,this.proximoSigno)){
                 //hubo ganador de celda
                 // Se oculta la celda y se marca con el ganador en pantalla y en el principal
@@ -100,5 +102,15 @@ public class MasterTresEnRaya {
 
     public TresEnRaya getCuadroMayor() {
         return this.lista3EnRaya[0];
+    }
+
+    public boolean juegoCompletado() {
+        // si el juego principal tienes todas las celdas ganadas en 0 o si todas las que esten en uno, esten ya completos
+        for(int i= 0;i<9 ;i++){
+            if(this.celdasGanadas[i]==1&&!this.lista3EnRaya[i+1].isFull()){
+                return false;
+            }
+        }
+        return true;
     }
 }

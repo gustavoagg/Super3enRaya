@@ -5,25 +5,36 @@ import com.ggsoft.super3enraya.exception.JugadaIncorrectaException;
 public class TresEnRaya {
     String[] casillas;
     String ganador;
+    int nroJugadas;
 
 
     public TresEnRaya(){
         this.casillas = new String[9];
         this.ganador="";
+        this.nroJugadas = 0;
     }
 
     public boolean marcarCasilla(int nroCasilla,String signo) throws JugadaIncorrectaException {
+
         if(!this.ganador.isEmpty()){
             throw new JugadaIncorrectaException("JT - Juego Terminado");
         }
         if(this.casillas[nroCasilla-1]==null||this.casillas[nroCasilla-1].isEmpty()) {
             this.casillas[nroCasilla - 1] = signo;
+            nroJugadas++;
             if (huboGanador()) {
                 this.ganador = signo;
                 return true;
             }
         }else{
             throw new JugadaIncorrectaException("CO - Casilla Ocupada");
+        }
+        return false;
+    }
+
+    public boolean isFull(){
+        if(nroJugadas>=9){
+            return true;
         }
         return false;
     }
@@ -61,9 +72,5 @@ public class TresEnRaya {
 
     public String getPosicion(int i){
         return this.casillas[i-1];
-    }
-
-    public String toString(){
-        return this.ganador +" - "+this.casillas.toString();
     }
 }

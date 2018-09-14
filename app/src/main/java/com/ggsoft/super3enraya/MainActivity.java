@@ -15,6 +15,8 @@ import com.ggsoft.super3enraya.model.MasterTresEnRaya;
 import com.ggsoft.super3enraya.util.MarcadorPantalla;
 
 public class MainActivity extends AppCompatActivity {
+    boolean gameOver = false;
+    int boludoCount=0;
     public MasterTresEnRaya master;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,18 +47,36 @@ public class MainActivity extends AppCompatActivity {
         try {
             if(master.realizarJugada(celda,casilla)){
                 //Fin de Juego: Mostrar Ganador al signoActual
+                gameOver = true;
                 Snackbar.make(view, "FELICIDADES GANO - "+signoActual.toUpperCase(), Snackbar.LENGTH_INDEFINITE)
                         .setAction("Action", null).show();
+            }else if(master.juegoCompletado()){
+                //Fin de juego: Se gana por puntos
+                Snackbar.make(view, "GAME OVER - "+signoActual.toUpperCase(), Snackbar.LENGTH_INDEFINITE)
+                        .setAction("Action", null).show();
+                gameOver =true;
             }
 
+            boludoCount=0;
             MarcadorPantalla.checkCasilla((ImageButton) view, signoActual);
             MarcadorPantalla.dibujarCeldasPermitidas(master.getCeldasPermitidas(),master.getCuadroMayor(),this);
         } catch (JugadaIncorrectaException e) {
             //Jugada Indebida mostrar mensaje
-            Snackbar.make(view, "EPA!! ahi no puedes jugar", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show();
+            boludoCount++;
+            if(boludoCount>2){
+                boludoCount=1;
+                Snackbar.make(view, "Bolud@!! no insistas juega en el verde", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }else {
+                Snackbar.make(view, "EPA!! ahi no puedes jugar", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
         }
 
+    }
+
+    private void marcarLineaGanadora() {
+        //buscar en el maestro cuales son las celdas ganadoras y cambiar el tinte de las mismas
     }
 
     private void checkCasilla(ImageButton view, String signoActual) {
@@ -75,11 +95,14 @@ public class MainActivity extends AppCompatActivity {
 
     public void reiniciarJuego(View view) {
         //Basicamente reiniciar la applicacion -- alternativa rapida
+        Snackbar.make(view, "Reiniciara, en  ..3..2..1", Snackbar.LENGTH_INDEFINITE)
+                .setAction("Action", null).show();
         Intent mStartActivity = new Intent(this.getApplicationContext(), MainActivity.class);
         int mPendingIntentId = 123456;
         PendingIntent mPendingIntent = PendingIntent.getActivity(this.getApplicationContext(), mPendingIntentId,    mStartActivity, PendingIntent.FLAG_CANCEL_CURRENT);
         AlarmManager mgr = (AlarmManager)this.getApplicationContext().getSystemService(this.getApplicationContext().ALARM_SERVICE);
         mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 100, mPendingIntent);
+
         System.exit(0);
     }
 
@@ -89,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void aprendaJuego(View view) {
-        Snackbar.make(view, "Es un juego para dos personas por si no lo ha notado, y facilmente los colores lo podran orientar, activa tu mente, Proximamente mas detalles", Snackbar.LENGTH_LONG)
+        Snackbar.make(view, "Facil!, Derrotando a tu oponente, ...deja ya de pensar y a jugar", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
     }
 }
