@@ -4,6 +4,7 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -15,9 +16,12 @@ import com.ggsoft.super3enraya.model.MasterTresEnRaya;
 import com.ggsoft.super3enraya.util.MarcadorPantalla;
 
 public class MainActivity extends AppCompatActivity {
-    boolean gameOver = false;
-    int boludoCount=0;
+    private boolean gameOver = false;
+    private int boludoCount=0;
+    private boolean isVsComputer = false;
+
     public MasterTresEnRaya master;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,42 +42,87 @@ public class MainActivity extends AppCompatActivity {
 
     public void jugarAqui(View view)
     {
-        String name = getResources().getResourceEntryName(view.getId());
-        int celda = obtenerPosition(name,1);
-        int casilla = obtenerPosition(name,2);
+        if(!gameOver) {
+            String name = getResources().getResourceEntryName(view.getId());
+            int celda = obtenerPosition(name, 1);
+            int casilla = obtenerPosition(name, 2);
 
-        //guardamos el signo ya que este cambia al realizar la jugada
-        String signoActual = master.getProximoSigno();
-        try {
-            if(master.realizarJugada(celda,casilla)){
-                //Fin de Juego: Mostrar Ganador al signoActual
-                gameOver = true;
-                Snackbar.make(view, "FELICIDADES GANO - "+signoActual.toUpperCase(), Snackbar.LENGTH_INDEFINITE)
-                        .setAction("Action", null).show();
-            }else if(master.juegoCompletado()){
-                //Fin de juego: Se gana por puntos
-                Snackbar.make(view, "GAME OVER - "+signoActual.toUpperCase(), Snackbar.LENGTH_INDEFINITE)
-                        .setAction("Action", null).show();
-                gameOver =true;
-            }
+            //guardamos el signo ya que este cambia al realizar la jugada
+            String signoActual = master.getProximoSigno();
+            try {
+                //realizar jugada del player
+                evaluarJugada(view, signoActual, master.realizarJugada(celda, casilla));
+                redibujarGrilla(master, signoActual);
+                if (isVsComputer) {
 
-            boludoCount=0;
-            MarcadorPantalla.cambiarJugador(signoActual,this);
-            MarcadorPantalla.checkCasilla((ImageButton) view, signoActual);
-            MarcadorPantalla.dibujarCeldasPermitidas(master.getCeldasPermitidas(),master.getCuadroMayor(),this);
-        } catch (JugadaIncorrectaException e) {
-            //Jugada Indebida mostrar mensaje
-            boludoCount++;
-            if(boludoCount>2){
-                boludoCount=1;
-                Snackbar.make(view, "Bolud@!! no insistas juega en el verde", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }else {
-                Snackbar.make(view, "EPA!! ahi no puedes jugar", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                    //Se añade un delay para que la jugada sea apreciable por el jugador
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            //realizar jugada de la pc
+                            String signoActual = master.getProximoSigno();
+                            try {
+                                evaluarJugada(MainActivity.super.getCurrentFocus(), signoActual, master.realizarJugadaAleatoria());
+                            } catch (JugadaIncorrectaException e) {
+                               //do nothing, este caso no se debe generar ya que se valida la jugada antes
+                                e.printStackTrace();
+                            }
+                            redibujarGrilla(master, signoActual);
+                        }
+                    }, 1500); // Millisecond 1000 = 1 sec
+                }
+
+                boludoCount = 0;
+            } catch (JugadaIncorrectaException e) {
+                //Jugada Indebida mostrar mensaje
+                boludoCount++;
+                if (boludoCount > 2) {
+                    boludoCount = 1;
+                    Snackbar.make(view, "OJO!! no insistas juega en el verde", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                } else {
+                    Snackbar.make(view, "EPA!! ahi no puedes jugar", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                }
             }
+        }else {
+            Snackbar.make(view, "Juego culminado debes reiniciar para continuar", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
         }
+    }
 
+    private void delay(int i) {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                // Magic here
+            }
+        }, i*1000); // Millisecond 1000 = 1 sec
+    }
+
+    private void evaluarJugada(View view, String signoActual, boolean ganador) {
+        if (ganador) {
+            //Fin de Juego: Mostrar Ganador al signoActual
+            gameOver = true;
+            Snackbar.make(view, "FELICIDADES GANO - " + signoActual.toUpperCase(), Snackbar.LENGTH_INDEFINITE)
+                    .setAction("Action", null).show();
+        } else if (master.juegoCompletado()) {
+            //Fin de juego: Se gana por puntos
+            Snackbar.make(view, "GAME OVER - " + signoActual.toUpperCase(), Snackbar.LENGTH_INDEFINITE)
+                    .setAction("Action", null).show();
+            gameOver = true;
+        }
+    }
+
+
+    private void redibujarGrilla(MasterTresEnRaya master, String signoActual) {
+        ImageButton button = (ImageButton) this.findViewById(this.getResources()
+                .getIdentifier("imageButton-" + master.getUltimaCeldaJugada() + "-"
+                        + master.getUltimaCasillaJugada(), "id", this.getPackageName()));
+
+        MarcadorPantalla.cambiarJugador(signoActual,this);
+        MarcadorPantalla.checkCasilla(button, signoActual);
+        MarcadorPantalla.dibujarCeldasPermitidas(master.getCeldasPermitidas(),master.getCuadroMayor(),this);
     }
 
     private void marcarLineaGanadora() {
@@ -108,8 +157,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void entrenarJuego(View view) {
-        Snackbar.make(view, "Esto viene en la version paga, espere un poco por favor =)", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show();
+        if(!isVsComputer) {
+            isVsComputer = true;
+            Snackbar.make(view, "Modo Aleatorio Activado, jugar contra IA,  Suerte =)", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
+        }else{
+            isVsComputer = false;
+            Snackbar.make(view, "Modo Aleatorio Desactivado, jugar con un amigo", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
+        }
     }
 
     public void aprendaJuego(View view) {

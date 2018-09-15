@@ -2,13 +2,18 @@ package com.ggsoft.super3enraya.model;
 
 import com.ggsoft.super3enraya.exception.JugadaIncorrectaException;
 
+import java.util.Random;
+
 public class MasterTresEnRaya {
     public static final String X_SIGN = "x";
     public static final String O_SIGN = "o";
+
     TresEnRaya[] lista3EnRaya;
     String proximoSigno;
     int[] celdasPermitidas; //cero no permitido, uno permitido, dos ganado
     int[] celdasGanadas; //cero ganada, uno no ganada
+    private int ultimaCeldaJugada;
+    private int ultimaCasillaJugada;
 
 
     public MasterTresEnRaya(int nroTresEnRaya){
@@ -22,8 +27,38 @@ public class MasterTresEnRaya {
         this.celdasGanadas = new int[]{1,1,1,1,1,1,1,1,1};
     }
 
+    public boolean realizarJugadaAleatoria() throws JugadaIncorrectaException {
+        // la idea de este metodo es generar una jugada aletoria para poder entrenar
+        int celdaAleatoria = 0;
+        int casillaAleatoria = 0;
+
+        // buscar una celda aleatoria disponible
+        while(true){
+            int random = (int)(Math.random() *9)+1;
+            if(isCeldaPermitida(random)){
+                if(!lista3EnRaya[random].isFull()) {
+                    celdaAleatoria=random;
+                    break;
+                }
+            }
+        }
+
+        // buscar una casilla aleatoria disponible dentro de la celda escogida
+        while(true){
+            int random = (int)(Math.random() *9)+1;
+            String signo = lista3EnRaya[celdaAleatoria].getPosicion(random);
+            if(signo==null || signo.isEmpty()){
+                casillaAleatoria= random;
+                break;
+            }
+        }
+
+        return realizarJugada(celdaAleatoria,casillaAleatoria);
+    }
     // La celda indica el numero de TresEnRaya seleccionado (1-9) y la casilla es la posicion dentro de esa celda (1-9)
     public boolean realizarJugada(int celda, int casilla) throws JugadaIncorrectaException {
+        this.ultimaCeldaJugada = celda;
+        this.ultimaCasillaJugada = casilla;
         // se puede jugar en esa celda
             if(!isCeldaPermitida(celda)){
                 throw new JugadaIncorrectaException("CI - Celda Invalida");
@@ -112,5 +147,13 @@ public class MasterTresEnRaya {
             }
         }
         return true;
+    }
+
+    public int getUltimaCeldaJugada(){
+        return ultimaCeldaJugada;
+    }
+
+    public int getUltimaCasillaJugada(){
+        return ultimaCasillaJugada;
     }
 }

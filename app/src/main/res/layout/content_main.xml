@@ -20,7 +20,6 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:visibility="visible"
-            android:background="#222222"
             android:layout_weight="0.33">
 
             <LinearLayout
@@ -1128,30 +1127,29 @@
         android:layout_weight="0.1">
 
 
-        <Button
-        android:id="@+id/btnReiniciar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-            android:onClick="reiniciarJuego"
-        android:text="Reinicia" />
-        <Button
+
+        <TextView
+            android:id="@+id/editText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:inputType="textPersonName"
+            android:text="MODO"
+            android:textAlignment="center" />
+
+        <ToggleButton
             android:id="@+id/btnEntrena"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="entrenarJuego"
-            android:text="Entrena" />
-        <Button
-            android:id="@+id/btnAprenda"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:onClick="aprendaJuego"
-            android:text="¿Como Gano?" />
+            android:text="Vs.IA"
+            android:textColorLink="@color/celda_activada"
+            android:textOff="2 Players"
+            android:textOn="1 vs. IA" />
 
         <TextView
-            android:id="@+id/editText"
+            android:id="@+id/editText2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -1165,6 +1163,21 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             app:srcCompat="@drawable/sign_o" />
+        <TextView
+            android:id="@+id/editText3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:inputType="textPersonName"
+            android:text=" "
+            android:textAlignment="center" />
+        <Button
+            android:id="@+id/btnReiniciar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="reiniciarJuego"
+            android:text="Reiniciar" />
     </LinearLayout>
 
 
