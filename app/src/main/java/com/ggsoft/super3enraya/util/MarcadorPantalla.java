@@ -86,12 +86,19 @@ public class MarcadorPantalla {
         }
     }
 
-    public static void cambiarJugador(String sign, AppCompatActivity main) {
+    public static void mostrarJugador(String sign, AppCompatActivity main) {
         ImageView jugador = main.findViewById(R.id.quienJuega);
         if (sign.equalsIgnoreCase(MasterTresEnRaya.O_SIGN)){
-            jugador.setImageResource(R.drawable.sign_x);
-        }else{
             jugador.setImageResource(R.drawable.sign_o);
+        }else{
+            jugador.setImageResource(R.drawable.sign_x);
+        }
+    }
+    public static void cambiarJugador(String sign, AppCompatActivity main) {
+        if (sign.equalsIgnoreCase(MasterTresEnRaya.O_SIGN)){
+            mostrarJugador(MasterTresEnRaya.X_SIGN,main);
+        }else{
+            mostrarJugador(MasterTresEnRaya.O_SIGN,main);
         }
     }
 

@@ -29,16 +29,20 @@ public class MasterTresEnRaya {
         // la idea de este metodo es generar una jugada aletoria para poder entrenar
         int celdaAleatoria;
         int casillaAleatoria;
+        int counter=0;
 
         // buscar una celda aleatoria disponible
         while(true){
             int random = (int)(Math.random() *9)+1;
+            counter++;
             if(isCeldaPermitida(random)){
                 if(lista3EnRaya[random].isNotFull()) {
                     celdaAleatoria=random;
                     break;
                 }
             }
+            if(counter>100)
+                throw new JugadaIncorrectaException("IA - No consiguio donde jugar ");
         }
 
         // buscar una casilla aleatoria disponible dentro de la celda escogida

@@ -6,6 +6,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
@@ -19,19 +20,23 @@ public class MainActivity extends AppCompatActivity {
     private boolean isVsComputer = false;
 
     //Se añade un delay para quitar la ventana del titulo
-    private ImageView cartel = (ImageView)this.findViewById(R.id.imgFinal);
+    private ImageView cartel;
 
     public MasterTresEnRaya master;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        cartel = (ImageView)findViewById(R.id.imgFinal);
+
         //Crear nuevo Juego y limpiar pantalla
         master = new MasterTresEnRaya(9);
         //Mostrar nombre del Juego
-        MarcadorPantalla.mostrarFinal(MarcadorPantalla.FINAL_INIT,this);
+        MarcadorPantalla.mostrarFinal(MarcadorPantalla.FINAL_GANASTE,this);
         MarcadorPantalla.dibujarCeldasPermitidas(master.getCeldasPermitidas(),master.getCuadroMayor(),this);
 
         new Handler().postDelayed(new Runnable() {
@@ -41,16 +46,28 @@ public class MainActivity extends AppCompatActivity {
             }
         }, 4000); // Millisecond 1000 = 1 sec
 
+        //Añadiendo info al boton flotante
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Proximamente podras recomendarla a todos, por ahora mantenlo en secreto =)", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Realizado por Gustavo Gonzalez - para el curso de DiplomadosOnLine.com", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
+
+        //mantener la ventana activa
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
 
+    private void salvarJuegoActual(){
+
+
+    }
+
+    private void cargarJuegoSalvado(){
+
+    }
 
     public void jugarAqui(View view)
     {
@@ -139,9 +156,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void reiniciarJuego(View view) {
+        gameOver = false;
         master = new MasterTresEnRaya(9);
         MarcadorPantalla.reiniciarCeldas(this);
         MarcadorPantalla.dibujarCeldasPermitidas(master.getCeldasPermitidas(),master.getCuadroMayor(),this);
+        MarcadorPantalla.mostrarJugador(master.getProximoSigno(),this);
     }
 
     public void entrenarJuego(View view) {
