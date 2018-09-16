@@ -31,12 +31,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        cartel = (ImageView)findViewById(R.id.imgFinal);
+        cartel = findViewById(R.id.imgFinal);
 
         //Crear nuevo Juego y limpiar pantalla
         master = new MasterTresEnRaya(9);
         //Mostrar nombre del Juego
-        MarcadorPantalla.mostrarFinal(MarcadorPantalla.FINAL_GANASTE,this);
+        MarcadorPantalla.mostrarFinal(MarcadorPantalla.FINAL_INIT,this);
         MarcadorPantalla.dibujarCeldasPermitidas(master.getCeldasPermitidas(),master.getCuadroMayor(),this);
 
         new Handler().postDelayed(new Runnable() {
