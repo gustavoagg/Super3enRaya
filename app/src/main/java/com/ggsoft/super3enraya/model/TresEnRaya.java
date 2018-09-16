@@ -3,12 +3,12 @@ package com.ggsoft.super3enraya.model;
 import com.ggsoft.super3enraya.exception.JugadaIncorrectaException;
 
 public class TresEnRaya {
-    String[] casillas;
-    String ganador;
-    int nroJugadas;
+    private String[] casillas;
+    private String ganador;
+    private int nroJugadas;
 
 
-    public TresEnRaya(){
+    TresEnRaya(){
         this.casillas = new String[9];
         this.ganador="";
         this.nroJugadas = 0;
@@ -32,13 +32,11 @@ public class TresEnRaya {
         return false;
     }
 
-    public boolean isFull(){
-        if(nroJugadas>=9){
-            return true;
-        }
-        return false;
+    public boolean isNotFull(){
+        return nroJugadas < 9;
     }
 
+    @SuppressWarnings("SimplifiableIfStatement")
     private boolean huboGanador() {
 
         if (sonIguales(1,2,3)){
@@ -55,19 +53,11 @@ public class TresEnRaya {
             return true;
         }else if(sonIguales(1,5,9)){
             return true;
-        }else if(sonIguales(3,5,7)){
-            return true;
-        }
-        return false;
+        }else return sonIguales(3, 5, 7);
     }
 
     private boolean sonIguales(int i, int j, int k) {
-        if(this.casillas[i-1]!=null && this.casillas[j-1]!=null && this.casillas[i-1].equals(this.casillas[j-1])){
-            if(this.casillas[k-1]!=null && this.casillas[j-1].equals(this.casillas[k-1])){
-                return true;
-            }
-        }
-        return false;
+        return this.casillas[i - 1] != null && this.casillas[j - 1] != null && this.casillas[i - 1].equals(this.casillas[j - 1]) && this.casillas[k - 1] != null && this.casillas[j - 1].equals(this.casillas[k - 1]);
     }
 
     public String getPosicion(int i){

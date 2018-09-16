@@ -2,16 +2,14 @@ package com.ggsoft.super3enraya.model;
 
 import com.ggsoft.super3enraya.exception.JugadaIncorrectaException;
 
-import java.util.Random;
-
 public class MasterTresEnRaya {
     public static final String X_SIGN = "x";
     public static final String O_SIGN = "o";
 
-    TresEnRaya[] lista3EnRaya;
-    String proximoSigno;
-    int[] celdasPermitidas; //cero no permitido, uno permitido, dos ganado
-    int[] celdasGanadas; //cero ganada, uno no ganada
+    private TresEnRaya[] lista3EnRaya;
+    private String proximoSigno;
+    private int[] celdasPermitidas; //cero no permitido, uno permitido, dos ganado
+    private int[] celdasGanadas; //cero ganada, uno no ganada
     private int ultimaCeldaJugada;
     private int ultimaCasillaJugada;
 
@@ -29,14 +27,14 @@ public class MasterTresEnRaya {
 
     public boolean realizarJugadaAleatoria() throws JugadaIncorrectaException {
         // la idea de este metodo es generar una jugada aletoria para poder entrenar
-        int celdaAleatoria = 0;
-        int casillaAleatoria = 0;
+        int celdaAleatoria;
+        int casillaAleatoria;
 
         // buscar una celda aleatoria disponible
         while(true){
             int random = (int)(Math.random() *9)+1;
             if(isCeldaPermitida(random)){
-                if(!lista3EnRaya[random].isFull()) {
+                if(lista3EnRaya[random].isNotFull()) {
                     celdaAleatoria=random;
                     break;
                 }
@@ -83,11 +81,7 @@ public class MasterTresEnRaya {
     }
 
     private boolean isCeldaPermitida(int celda) {
-        if(this.celdasPermitidas[celda-1]==1){
-            return true;
-        }else{
-            return false;
-        }
+        return this.celdasPermitidas[celda - 1] == 1;
     }
 
     private void marcarCeldasPermitidas(int casilla) {
@@ -142,7 +136,7 @@ public class MasterTresEnRaya {
     public boolean juegoCompletado() {
         // si el juego principal tienes todas las celdas ganadas en 0 o si todas las que esten en uno, esten ya completos
         for(int i= 0;i<9 ;i++){
-            if(this.celdasGanadas[i]==1&&!this.lista3EnRaya[i+1].isFull()){
+            if(this.celdasGanadas[i]==1&& this.lista3EnRaya[i+1].isNotFull()){
                 return false;
             }
         }

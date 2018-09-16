@@ -3,12 +3,13 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="black_overlay">#66000000</color>
-    <color name="ultra_light_gray">#ebebeb</color>
-    <color name="celda_back">#cccccc</color>
-    <color name="celda_desactivada">#ff9980</color>
+    <color name="black_overlay">#F5F8A1</color>
+    <color name="ultra_light_gray">#F5F8A1</color>
+    <color name="celda_back">#ff8b00</color>
+    <color name="celda_desactivada">#FF8B00</color>
     <color name="celda_activada">#6fdc6f</color>
     <color name="celda_ganadora">#ffff66</color>
-    <color name="fondo_boton">#f2f2f2</color>
+    <color name="fondo_boton">#F5F8A1</color>
+    <color name="borde_cuadrilla_mayor">#301705</color>
 
 </resources>

@@ -1,8 +1,5 @@
 package com.ggsoft.super3enraya;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
@@ -10,6 +7,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import com.ggsoft.super3enraya.exception.JugadaIncorrectaException;
 import com.ggsoft.super3enraya.model.MasterTresEnRaya;
@@ -20,6 +18,9 @@ public class MainActivity extends AppCompatActivity {
     private int boludoCount=0;
     private boolean isVsComputer = false;
 
+    //Se añade un delay para quitar la ventana del titulo
+    private ImageView cartel = (ImageView)this.findViewById(R.id.imgFinal);
+
     public MasterTresEnRaya master;
 
     @Override
@@ -27,9 +28,20 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //Crear nuevo Juego y limpiar pantalla
         master = new MasterTresEnRaya(9);
+        //Mostrar nombre del Juego
+        MarcadorPantalla.mostrarFinal(MarcadorPantalla.FINAL_INIT,this);
+        MarcadorPantalla.dibujarCeldasPermitidas(master.getCeldasPermitidas(),master.getCuadroMayor(),this);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                    cartel.setVisibility(View.GONE);
+            }
+        }, 4000); // Millisecond 1000 = 1 sec
+
+        FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -51,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
             String signoActual = master.getProximoSigno();
             try {
                 //realizar jugada del player
-                evaluarJugada(view, signoActual, master.realizarJugada(celda, casilla));
+                evaluarJugada(master.realizarJugada(celda, casilla),false);
                 redibujarGrilla(master, signoActual);
                 if (isVsComputer) {
 
@@ -62,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
                             //realizar jugada de la pc
                             String signoActual = master.getProximoSigno();
                             try {
-                                evaluarJugada(MainActivity.super.getCurrentFocus(), signoActual, master.realizarJugadaAleatoria());
+                                evaluarJugada(master.realizarJugadaAleatoria(),true);
                             } catch (JugadaIncorrectaException e) {
                                //do nothing, este caso no se debe generar ya que se valida la jugada antes
                                 e.printStackTrace();
@@ -91,32 +103,24 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void delay(int i) {
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                // Magic here
-            }
-        }, i*1000); // Millisecond 1000 = 1 sec
-    }
-
-    private void evaluarJugada(View view, String signoActual, boolean ganador) {
+    private void evaluarJugada(boolean ganador, boolean isAI) {
         if (ganador) {
             //Fin de Juego: Mostrar Ganador al signoActual
             gameOver = true;
-            Snackbar.make(view, "FELICIDADES GANO - " + signoActual.toUpperCase(), Snackbar.LENGTH_INDEFINITE)
-                    .setAction("Action", null).show();
+            if(isAI){
+                MarcadorPantalla.mostrarFinal(MarcadorPantalla.FINAL_PERDISTE,this);
+            }else {
+                MarcadorPantalla.mostrarFinal(MarcadorPantalla.FINAL_GANASTE,this);
+            }
         } else if (master.juegoCompletado()) {
-            //Fin de juego: Se gana por puntos
-            Snackbar.make(view, "GAME OVER - " + signoActual.toUpperCase(), Snackbar.LENGTH_INDEFINITE)
-                    .setAction("Action", null).show();
+            MarcadorPantalla.mostrarFinal(MarcadorPantalla.FINAL_EMPATE, this);
             gameOver = true;
         }
     }
 
 
     private void redibujarGrilla(MasterTresEnRaya master, String signoActual) {
-        ImageButton button = (ImageButton) this.findViewById(this.getResources()
+        ImageButton button =  this.findViewById(this.getResources()
                 .getIdentifier("imageButton-" + master.getUltimaCeldaJugada() + "-"
                         + master.getUltimaCasillaJugada(), "id", this.getPackageName()));
 
@@ -129,31 +133,15 @@ public class MainActivity extends AppCompatActivity {
         //buscar en el maestro cuales son las celdas ganadoras y cambiar el tinte de las mismas
     }
 
-    private void checkCasilla(ImageButton view, String signoActual) {
-        if(signoActual.equals(MasterTresEnRaya.X_SIGN)) {
-            view.setImageResource(R.drawable.sign_x);
-        }else{
-            view.setImageResource(R.drawable.sign_o);
-        }
-    }
-
     private int obtenerPosition(String name, int pos) {
         String[] text = name.split("-");
-        int result = Integer.parseInt(text[pos]);
-        return result;
+        return Integer.parseInt(text[pos]);
     }
 
     public void reiniciarJuego(View view) {
-        //Basicamente reiniciar la applicacion -- alternativa rapida
-        Snackbar.make(view, "Reiniciara, en  ..3..2..1", Snackbar.LENGTH_INDEFINITE)
-                .setAction("Action", null).show();
-        Intent mStartActivity = new Intent(this.getApplicationContext(), MainActivity.class);
-        int mPendingIntentId = 123456;
-        PendingIntent mPendingIntent = PendingIntent.getActivity(this.getApplicationContext(), mPendingIntentId,    mStartActivity, PendingIntent.FLAG_CANCEL_CURRENT);
-        AlarmManager mgr = (AlarmManager)this.getApplicationContext().getSystemService(this.getApplicationContext().ALARM_SERVICE);
-        mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 100, mPendingIntent);
-
-        System.exit(0);
+        master = new MasterTresEnRaya(9);
+        MarcadorPantalla.reiniciarCeldas(this);
+        MarcadorPantalla.dibujarCeldasPermitidas(master.getCeldasPermitidas(),master.getCuadroMayor(),this);
     }
 
     public void entrenarJuego(View view) {
@@ -168,8 +156,13 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void aprendaJuego(View view) {
-        Snackbar.make(view, "Facil!, Derrotando a tu oponente, ...deja ya de pensar y a jugar", Snackbar.LENGTH_LONG)
+    public void info(View view) {
+        Snackbar.make(view, "Realizado por Gustavo Gonzalez - para el curso de diplomadosonline.com", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
     }
+
+    public void ocultar(View view){
+        view.setVisibility(View.GONE);
+    }
+
 }
