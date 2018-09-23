@@ -107,7 +107,7 @@ public class MarcadorPantalla {
         ImageView cartel = main.findViewById(R.id.imgFinal);
         switch (finalPerdiste){
             case 0: //Bienvenida
-               cartel.setImageResource(R.drawable.logo3);
+               cartel.setImageResource(R.drawable.splash_tateti);
                cartel.setBackgroundColor(main.getResources().getColor(R.color.ultra_light_gray));
 
                 break;

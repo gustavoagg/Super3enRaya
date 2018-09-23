@@ -14,7 +14,7 @@
         android:orientation="vertical"
         android:visibility="visible"
         android:background="@color/borde_cuadrilla_mayor"
-        android:layout_weight="0.89">
+        android:layout_weight="0.85">
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -1124,7 +1124,7 @@
         android:orientation="vertical"
         android:visibility="visible"
         android:background="#ffffff"
-        android:layout_weight="0.11">
+        android:layout_weight="0.15">
 
 
 
@@ -1177,7 +1177,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="reiniciarJuego"
-            android:text="Reiniciar" />
+            android:text="Iniciar" />
     </LinearLayout>
 
 
