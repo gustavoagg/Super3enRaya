@@ -1,10 +1,13 @@
 package com.ggsoft.super3enraya.model;
 
 import com.ggsoft.super3enraya.exception.JugadaIncorrectaException;
+import com.ggsoft.super3enraya.pojo.Jugada;
 
 public class MasterTresEnRaya {
     public static final String X_SIGN = "x";
     public static final String O_SIGN = "o";
+
+    private static final double FACTOR = 1.5;
 
     private TresEnRaya[] lista3EnRaya;
     private String proximoSigno;
@@ -25,6 +28,17 @@ public class MasterTresEnRaya {
         this.celdasGanadas = new int[]{1,1,1,1,1,1,1,1,1};
     }
 
+    //pondera dando un peso luego de una jugada especifica, asi el IA puede compara opciones
+    public double ponderarPartidaPara(String sign){
+        double result = 0;
+        for (TresEnRaya tresEnRaya:lista3EnRaya) {
+            result = result + (tresEnRaya.evaluarChancesPara(sign) * FACTOR);
+        }
+        //Se agrega triple peso sobre el principal, una del ciclo previo
+        result = result + getCuadroMayor().evaluarChancesPara(sign);
+        return result;
+    }
+
     public boolean realizarJugadaAleatoria() throws JugadaIncorrectaException {
         // la idea de este metodo es generar una jugada aletoria para poder entrenar
         int celdaAleatoria;
@@ -36,7 +50,7 @@ public class MasterTresEnRaya {
             int random = (int)(Math.random() *9)+1;
             counter++;
             if(isCeldaPermitida(random)){
-                if(lista3EnRaya[random].isNotFull()) {
+                if(lista3EnRaya[random].isNotFull()&&lista3EnRaya[random].hasGanador()) {
                     celdaAleatoria=random;
                     break;
                 }
@@ -55,30 +69,31 @@ public class MasterTresEnRaya {
             }
         }
 
-        return realizarJugada(celdaAleatoria,casillaAleatoria);
+        return realizarJugada(new Jugada(celdaAleatoria,casillaAleatoria));
     }
     // La celda indica el numero de TresEnRaya seleccionado (1-9) y la casilla es la posicion dentro de esa celda (1-9)
-    public boolean realizarJugada(int celda, int casilla) throws JugadaIncorrectaException {
-        this.ultimaCeldaJugada = celda;
-        this.ultimaCasillaJugada = casilla;
+    public boolean realizarJugada(Jugada jugada) throws JugadaIncorrectaException {
+        this.ultimaCeldaJugada = jugada.getCelda();
+        this.ultimaCasillaJugada = jugada.getCasilla();
         // se puede jugar en esa celda
-            if(!isCeldaPermitida(celda)){
+            if(!isCeldaPermitida(jugada.getCelda())){
                 throw new JugadaIncorrectaException("CI - Celda Invalida");
             }
             //realizar jugada para ver si genera ganador
-            if(this.lista3EnRaya[celda].marcarCasilla(casilla,this.proximoSigno)){
+            if(this.lista3EnRaya[jugada.getCelda()].marcarCasilla(jugada.getCasilla(),this.proximoSigno)){
                 //hubo ganador de celda
                 // Se oculta la celda y se marca con el ganador en pantalla y en el principal
-                marcarCeldaGanadora(celda);
+
+               marcarCeldaGanadora(jugada.getCelda());
                 // Se valida si hubo ganador en el maestro
-                if(this.lista3EnRaya[0].marcarCasilla(celda, this.proximoSigno)){
+                if(this.lista3EnRaya[0].marcarCasilla(jugada.getCelda(), this.proximoSigno)){
                     //hubo ganador de Partida
-                    marcarCeldasPermitidas(casilla);
+                    marcarCeldasPermitidas(jugada.getCasilla());
                     return true;
                 }
             }
             //valido en que celda se permite la proxima jugada
-            marcarCeldasPermitidas(casilla);
+            marcarCeldasPermitidas(jugada.getCasilla());
         //continuar partida
         cambiarSigno();
         return false;
@@ -89,8 +104,8 @@ public class MasterTresEnRaya {
     }
 
     private void marcarCeldasPermitidas(int casilla) {
-        if(this.celdasGanadas[casilla-1]==0){
-            //en caso de que la celda especificada este ganada se podra jugar libremente en cualquier celda no ganada
+        if(this.celdasGanadas[casilla-1]==0 || !this.getCuadro(casilla).isNotFull()){
+            //en caso de que la celda especificada este ganada o este completa se podra jugar libremente en cualquier celda no ganada
             for (int i = 0;i<9;i++) {
                 if(this.celdasGanadas[i]==0){
                     this.celdasPermitidas[i]=2;
@@ -137,6 +152,8 @@ public class MasterTresEnRaya {
         return this.lista3EnRaya[0];
     }
 
+    public TresEnRaya getCuadro(int i){ return this.lista3EnRaya[i];}
+
     public boolean juegoCompletado() {
         // si el juego principal tienes todas las celdas ganadas en 0 o si todas las que esten en uno, esten ya completos
         for(int i= 0;i<9 ;i++){
@@ -153,5 +170,30 @@ public class MasterTresEnRaya {
 
     public int getUltimaCasillaJugada(){
         return ultimaCasillaJugada;
+    }
+
+    public TresEnRaya[] getLista3EnRaya() {
+        return lista3EnRaya;
+    }
+
+    public int[] getCeldasGanadas() {
+        return celdasGanadas;
+    }
+
+    public static MasterTresEnRaya copyMaster(MasterTresEnRaya oldMaster){
+        MasterTresEnRaya newMaster = new MasterTresEnRaya(9);
+        for(int i = 0; i<10 ;i++){
+            newMaster.lista3EnRaya[i]= TresEnRaya.copy(oldMaster.lista3EnRaya[i]);
+        }
+        newMaster.proximoSigno = new String(oldMaster.getProximoSigno());
+        for (int i=0;i<9;i++) {
+            newMaster.celdasPermitidas[i]=new Integer(oldMaster.celdasPermitidas[i]);
+        }
+        for (int i=0;i<9;i++) {
+            newMaster.celdasGanadas[i]=new Integer(oldMaster.celdasGanadas[i]);
+        }
+        newMaster.ultimaCeldaJugada = new Integer(oldMaster.getUltimaCeldaJugada());
+        newMaster.ultimaCasillaJugada = new Integer(oldMaster.getUltimaCasillaJugada());
+        return newMaster;
     }
 }

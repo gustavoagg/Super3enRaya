@@ -11,7 +11,9 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import com.ggsoft.super3enraya.exception.JugadaIncorrectaException;
+import com.ggsoft.super3enraya.model.JugadorIA;
 import com.ggsoft.super3enraya.model.MasterTresEnRaya;
+import com.ggsoft.super3enraya.pojo.Jugada;
 import com.ggsoft.super3enraya.util.MarcadorPantalla;
 
 public class MainActivity extends AppCompatActivity {
@@ -80,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
             String signoActual = master.getProximoSigno();
             try {
                 //realizar jugada del player
-                evaluarJugada(master.realizarJugada(celda, casilla),false);
+                evaluarJugada(master.realizarJugada(new Jugada(celda, casilla)),false);
                 redibujarGrilla(master, signoActual);
                 if (isVsComputer) {
 
@@ -91,7 +93,9 @@ public class MainActivity extends AppCompatActivity {
                             //realizar jugada de la pc
                             String signoActual = master.getProximoSigno();
                             try {
-                                evaluarJugada(master.realizarJugadaAleatoria(),true);
+                                Jugada jugada = JugadorIA.mejorJugadaPara(signoActual,MasterTresEnRaya.copyMaster(master),5,0);
+                                evaluarJugada(master.realizarJugada(jugada),true);
+                               // evaluarJugada(master.realizarJugadaAleatoria(),true);
                             } catch (JugadaIncorrectaException e) {
                                //do nothing, este caso no se debe generar ya que se valida la jugada antes
                                 e.printStackTrace();
