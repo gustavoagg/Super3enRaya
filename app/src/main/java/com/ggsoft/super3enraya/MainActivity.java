@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     //Se añade un delay para quitar la ventana del titulo
     private ImageView cartel;
 
-    public MasterTresEnRaya master;
+    private MasterTresEnRaya master;
 
 
 
@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
                             //realizar jugada de la pc
                             String signoActual = master.getProximoSigno();
                             try {
-                                Jugada jugada = JugadorIA.mejorJugadaPara(signoActual,MasterTresEnRaya.copyMaster(master),5,0);
+                                Jugada jugada = JugadorIA.mejorJugadaPara(signoActual,MasterTresEnRaya.copyMaster(master),2,0);
                                 evaluarJugada(master.realizarJugada(jugada),true);
                                // evaluarJugada(master.realizarJugadaAleatoria(),true);
                             } catch (JugadaIncorrectaException e) {

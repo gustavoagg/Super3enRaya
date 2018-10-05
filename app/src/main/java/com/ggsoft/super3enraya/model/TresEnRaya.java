@@ -3,9 +3,9 @@ package com.ggsoft.super3enraya.model;
 import com.ggsoft.super3enraya.exception.JugadaIncorrectaException;
 
 public class TresEnRaya {
-    public static final int E_GANADO = 20;
-    public static final int E_PERDIDO = -20;
-    public static final int E_PLUS = 2;
+    private static final int E_GANADO = 20;
+    private static final int E_PERDIDO = -20;
+    private static final int E_PLUS = 2;
     private String[] casillas;
     private String ganador;
     private int nroJugadas;
@@ -100,7 +100,10 @@ public class TresEnRaya {
             return true;
         }else if(sonIguales(1,5,9)){
             return true;
-        }else return sonIguales(3, 5, 7);
+        }else if(sonIguales(3, 5, 7)){
+            return true;
+        }
+        return false;
     }
 
     private boolean sonIguales(int i, int j, int k) {

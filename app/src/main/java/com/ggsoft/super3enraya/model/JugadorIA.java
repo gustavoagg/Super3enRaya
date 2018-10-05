@@ -64,9 +64,10 @@ public class JugadorIA {
                 }else {
 
                     // buscar mejor jugada del oponente
-                    //Jugada jugadaContrario = mejorJugadaPara(opuesto(signo), MasterTresEnRaya.copyMaster(masterTemp), nivel,0);
+                    Jugada jugadaContrario = mejorJugadaPara(opuesto(signo), MasterTresEnRaya.copyMaster(masterTemp), 1,0);
                     try {
-                        masterTemp.realizarJugadaAleatoria();
+                        //masterTemp.realizarJugadaAleatoria();
+                        masterTemp.realizarJugada(jugadaContrario);
                     }catch (JugadaIncorrectaException e){
                         juegoCompleto = true;
                     }
@@ -105,8 +106,9 @@ public class JugadorIA {
     }
 
     private static List<Jugada> getJugadasPermitidas(MasterTresEnRaya masterTemp, int[] listaCeldas) {
-        List<Jugada> jugadasPermitidas = new ArrayList<Jugada>();
+        List<Jugada> jugadasPermitidas = new ArrayList<>();
         int celda = 0, casilla= 0;
+
 
         for (int celdaPermitida:listaCeldas) {
             celda++;
@@ -126,7 +128,7 @@ public class JugadorIA {
         return jugadasPermitidas;
     }
 
-    public static String opuesto(String signo){
+    private static String opuesto(String signo){
         if(signo.equals(X_SIGN)){
             return O_SIGN;
         }else{

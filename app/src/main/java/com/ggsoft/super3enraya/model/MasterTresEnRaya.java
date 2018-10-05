@@ -7,7 +7,7 @@ public class MasterTresEnRaya {
     public static final String X_SIGN = "x";
     public static final String O_SIGN = "o";
 
-    private static final double FACTOR = 1.5;
+    private static final double FACTOR = 1;
 
     private TresEnRaya[] lista3EnRaya;
     private String proximoSigno;
@@ -35,7 +35,7 @@ public class MasterTresEnRaya {
             result = result + (tresEnRaya.evaluarChancesPara(sign) * FACTOR);
         }
         //Se agrega triple peso sobre el principal, una del ciclo previo
-        result = result + getCuadroMayor().evaluarChancesPara(sign);
+        result = result + getCuadroMayor().evaluarChancesPara(sign)*2;
         return result;
     }
 

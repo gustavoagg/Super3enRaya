@@ -2,8 +2,6 @@ package com.ggsoft.super3enraya.pojo;
 
 import android.support.annotation.NonNull;
 
-import java.util.Comparator;
-
 public class Jugada implements Comparable<Jugada>{
     private int celda;
     private int casilla;
@@ -58,11 +56,11 @@ public class Jugada implements Comparable<Jugada>{
     @Override
     public int compareTo(@NonNull Jugada o) {
         int c;
-        c = new Integer(o.jugadas).compareTo(new Integer(this.jugadas));
+        c = Integer.compare(o.jugadas, this.jugadas);
         if (c == 0)
-            c = new Double(o.peso).compareTo(new Double(this.peso));
+            c = Double.compare(o.peso, this.peso);
         if (c == 0)
-            c = new Integer(o.celda*o.casilla).compareTo(new Integer(this.celda*this.casilla));
+            c = Integer.compare(o.celda * o.casilla, this.celda * this.casilla);
         return c;
     }
 }

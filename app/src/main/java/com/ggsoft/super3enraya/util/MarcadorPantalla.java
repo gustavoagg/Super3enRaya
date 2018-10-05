@@ -50,13 +50,17 @@ public class MarcadorPantalla {
         //acuerdo a su valor
         for(int i=0;i<9;i++){
 
-            if(celdasPermitidas[i]==0){
-                desactivarCelda(i+1,main);
-            }else if(celdasPermitidas[i]==1){
-                activarCelda(i+1,main);
-            }else if(celdasPermitidas[i]==2){
-                dibujarCeldaMayor(i+1,tresEnRaya.getPosicion(i+1),main);
-                //celdaGanadora(i+1,main);
+            switch (celdasPermitidas[i]) {
+                case 0:
+                    desactivarCelda(i + 1, main);
+                    break;
+                case 1:
+                    activarCelda(i + 1, main);
+                    break;
+                case 2:
+                    dibujarCeldaMayor(i + 1, tresEnRaya.getPosicion(i + 1), main);
+                    //celdaGanadora(i+1,main);
+                    break;
             }
         }
 
