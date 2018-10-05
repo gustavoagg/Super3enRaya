@@ -83,16 +83,21 @@ public class JugadorIA {
                         }catch (JugadaIncorrectaException e){
                             juegoCompleto = true;
                         }
-                        jugadasPermitidas.get(i).setJugadas(jugadas);
+                        jugadasPermitidas.get(i).setJugadas(mejorJugadaInner.getJugadas());
                         jugadasPermitidas.get(i).setPeso(eval+masterTemp.ponderarPartidaPara(signo));
 
                     }
                 }
             }
 
+
             //Luego de tener todos los pesos posibles de cada jugada
             //seleccionamos la mejor de ellas
-            Collections.sort(jugadasPermitidas);
+            if(jugadas==1) {
+                Collections.sort(jugadasPermitidas);
+            }else{
+                Collections.sort(jugadasPermitidas);
+            }
             return jugadasPermitidas.get(0);
 
         }

@@ -2,7 +2,9 @@ package com.ggsoft.super3enraya.pojo;
 
 import android.support.annotation.NonNull;
 
-public class Jugada implements Comparable{
+import java.util.Comparator;
+
+public class Jugada implements Comparable<Jugada>{
     private int celda;
     private int casilla;
     private int jugadas; //al estimar: numero de jugadas para mejor solucion
@@ -52,13 +54,15 @@ public class Jugada implements Comparable{
         this.peso = peso;
     }
 
+
     @Override
-    public int compareTo(@NonNull Object o) {
-        Jugada extJugada = (Jugada) o;
-        if(new Integer(this.jugadas).compareTo(new Integer(extJugada.jugadas)) == 0){
-            return new Double(this.peso).compareTo(new Double(extJugada.jugadas));
-        }else{
-            return new Integer(this.jugadas).compareTo(extJugada.jugadas);
-        }
+    public int compareTo(@NonNull Jugada o) {
+        int c;
+        c = new Integer(o.jugadas).compareTo(new Integer(this.jugadas));
+        if (c == 0)
+            c = new Double(o.peso).compareTo(new Double(this.peso));
+        if (c == 0)
+            c = new Integer(o.celda*o.casilla).compareTo(new Integer(this.celda*this.casilla));
+        return c;
     }
 }

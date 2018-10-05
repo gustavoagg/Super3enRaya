@@ -64,8 +64,8 @@ public class TresEnRaya {
     private double evaluarTrio(int i, int j, int k, String sign) {
         int result =0;
         String value =( this.casillas[i - 1]==null?"-":this.casillas[i - 1] )+
-                (this.casillas[i - 1]==null?"-":this.casillas[j - 1])+
-                (this.casillas[i - 1]==null?"-":this.casillas[k - 1]);
+                (this.casillas[j - 1]==null?"-":this.casillas[j - 1])+
+                (this.casillas[k - 1]==null?"-":this.casillas[k - 1]);
         if(sign.equals(MasterTresEnRaya.X_SIGN)){
             if(value.equals("xx-")||value.equals("x-x")||value.equals("-xx")){
                 return E_PLUS*2;
