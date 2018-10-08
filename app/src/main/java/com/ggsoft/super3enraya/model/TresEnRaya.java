@@ -128,11 +128,12 @@ public class TresEnRaya {
 
     public static TresEnRaya copy(TresEnRaya oldTres){
         TresEnRaya newTres = new TresEnRaya();
-        for (int i=0;i<9;i++) {
-            if(oldTres.casillas[i]!=null){
-                newTres.casillas[i]=new String(oldTres.casillas[i]);
-            }
-        }
+        System.arraycopy(oldTres.casillas,0,newTres.casillas,0,oldTres.casillas.length);
+       // for (int i=0;i<9;i++) {
+       //     if(oldTres.casillas[i]!=null){
+       //         newTres.casillas[i]=new String(oldTres.casillas[i]);
+       //     }
+       // }
         newTres.ganador = new String(oldTres.ganador);
         newTres.nroJugadas = new Integer(oldTres.nroJugadas);
 

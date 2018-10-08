@@ -6,13 +6,14 @@ import com.ggsoft.super3enraya.pojo.Jugada;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 import static com.ggsoft.super3enraya.model.MasterTresEnRaya.*;
 
 public class JugadorIA {
 
     public static Jugada mejorJugadaPara(String signo, MasterTresEnRaya master, int nivel, int jugadas) {
-        Jugada mejorJugada = null;
+        Jugada mejorJugada;
         int[] listaCeldas = master.getCeldasPermitidas();
         jugadas++;
         nivel--;
@@ -20,89 +21,72 @@ public class JugadorIA {
         List<Jugada> jugadasPermitidas = getJugadasPermitidas(master, listaCeldas);
         if(jugadasPermitidas.size()==1) {
             Jugada jugadaFinal = jugadasPermitidas.get(0);
-            try{
-                master.realizarJugada(jugadaFinal);
-            }catch (JugadaIncorrectaException e){
-                //do nothing
-            }
-            // evaluar master de cada jugada
-            double eval = master.ponderarPartidaPara(signo);
-            jugadaFinal.setJugadas(jugadas);
-            jugadaFinal.setPeso(eval);
-            return jugadaFinal;
+            calcularPeso(signo, master, jugadas, jugadaFinal,false);
+            mejorJugada = jugadaFinal;
         }else if(nivel== 0) {
-
-            //escojo una al azar de las permitidas //FIXME solo toma la primera
-            Jugada jugadaFinal = jugadasPermitidas.get(0);
-            try{
-            master.realizarJugada(jugadaFinal);
-            }catch (JugadaIncorrectaException e){
-                //do nothing
+            //evaluamos en busca de la mejor
+            for (int i = 0 ; i <jugadasPermitidas.size();i++) {
+                Jugada jugadaTemp = jugadasPermitidas.get(i);
+                MasterTresEnRaya masterTemp = MasterTresEnRaya.copyMaster(master);
+                calcularPeso(signo, masterTemp, jugadas, jugadaTemp, false);
             }
-            // evaluar master de cada jugada
-            double eval = master.ponderarPartidaPara(signo);
-            jugadaFinal.setJugadas(jugadas);
-            jugadaFinal.setPeso(eval);
-            return jugadaFinal;
+            //devolvemos una al azar (version previa - puede servir para los niveles)
+            //Jugada jugadaFinal = jugadasPermitidas.get(new Random().nextInt(jugadasPermitidas.size()));
+
+            Collections.sort(jugadasPermitidas);
+            mejorJugada = jugadasPermitidas.get(0);
         }else{
             boolean juegoCompleto = false;
+
             for (int i = 0 ; i <jugadasPermitidas.size();i++) {
+                Jugada jugadaTemp = jugadasPermitidas.get(i);
                 MasterTresEnRaya masterTemp = MasterTresEnRaya.copyMaster(master);
-                try{
-                    masterTemp.realizarJugada(jugadasPermitidas.get(i));
-                }catch (JugadaIncorrectaException e){
-                    juegoCompleto = true;
-                }
-                // evaluar master de cada jugada
-                double eval = masterTemp.ponderarPartidaPara(signo);
+                juegoCompleto = calcularPeso(signo, masterTemp, jugadas,  jugadaTemp,false);
 
                 //condicion de parada
-                if(juegoCompleto||masterTemp.juegoCompletado()){
-                    // evaluar master de cada jugada
-                    jugadasPermitidas.get(i).setJugadas(jugadas);
-                    jugadasPermitidas.get(i).setPeso(eval);
-                }else {
+                if(!juegoCompleto && !masterTemp.juegoCompletado()){
 
                     // buscar mejor jugada del oponente
-                    Jugada jugadaContrario = mejorJugadaPara(opuesto(signo), MasterTresEnRaya.copyMaster(masterTemp), 1,0);
-                    try {
-                        //masterTemp.realizarJugadaAleatoria();
-                        masterTemp.realizarJugada(jugadaContrario);
-                    }catch (JugadaIncorrectaException e){
-                        juegoCompleto = true;
-                    }
-                   // masterTemp.realizarJugada(jugadaContrario,false);
-                    eval = eval - masterTemp.ponderarPartidaPara(opuesto(signo));
-                    if(juegoCompleto||masterTemp.juegoCompletado()) {
-                        jugadasPermitidas.get(i).setJugadas(jugadas);
-                        jugadasPermitidas.get(i).setPeso(eval);
-                    }else{
+                    MasterTresEnRaya masterTempOponente = MasterTresEnRaya.copyMaster(masterTemp);
+                    Jugada jugadaContrario = mejorJugadaPara(opuesto(signo), masterTempOponente, 1,0);
+
+                    juegoCompleto = calcularPeso(signo, masterTemp, jugadas,  jugadaContrario,true);
+
+                    if(!juegoCompleto && !masterTempOponente.juegoCompletado()) {
                         List<Jugada> jugadasPermitidasInner = getJugadasPermitidas(masterTemp, masterTemp.getCeldasPermitidas());
                         Jugada mejorJugadaInner = mejorJugadaPara(signo,MasterTresEnRaya.copyMaster(masterTemp),nivel,jugadas);
-                        try {
-                        masterTemp.realizarJugada(mejorJugadaInner);
-                        }catch (JugadaIncorrectaException e){
-                            juegoCompleto = true;
-                        }
-                        jugadasPermitidas.get(i).setJugadas(mejorJugadaInner.getJugadas());
-                        jugadasPermitidas.get(i).setPeso(eval+masterTemp.ponderarPartidaPara(signo));
-
+                        calcularPeso(signo, masterTemp, jugadas,  jugadaTemp,true);
                     }
+
                 }
             }
-
-
+            Collections.sort(jugadasPermitidas);
+            mejorJugada = jugadasPermitidas.get(0);
             //Luego de tener todos los pesos posibles de cada jugada
             //seleccionamos la mejor de ellas
-            if(jugadas==1) {
-                Collections.sort(jugadasPermitidas);
-            }else{
-                Collections.sort(jugadasPermitidas);
-            }
-            return jugadasPermitidas.get(0);
 
         }
+        return mejorJugada;
 
+    }
+
+    private static boolean calcularPeso(String signo, MasterTresEnRaya master, int jugadas, Jugada jugadaFinal,boolean oponente) {
+        double eval = 0;
+        boolean juegoCompleto = false;
+        try{
+            master.realizarJugada(jugadaFinal);
+        }catch (JugadaIncorrectaException e){
+            juegoCompleto = true;
+            if(oponente)
+                eval = jugadaFinal.getPeso() - 1000;
+            else
+                eval = jugadaFinal.getPeso() + 1000;
+        }
+        // evaluar master de cada jugada
+        eval = eval +  master.ponderarPartidaPara(signo);
+        jugadaFinal.setJugadas(jugadas);
+        jugadaFinal.setPeso(eval);
+        return juegoCompleto;
     }
 
     private static List<Jugada> getJugadasPermitidas(MasterTresEnRaya masterTemp, int[] listaCeldas) {
